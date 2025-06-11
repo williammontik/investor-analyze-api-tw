@@ -1,12 +1,12 @@
 services:
   - type: web
-    name: investor-analyze-api
+    name: investor-analyze-api-tw    # <-- distinct name
     env: python
     plan: free
 
     buildCommand: pip install -r requirements.txt
 
-    startCommand: gunicorn investor_analyze_zh:app --bind 0.0.0.0:$PORT
+    startCommand: gunicorn investor_analysis_tw:app --bind 0.0.0.0:$PORT
 
     envVars:
       - key: OPENAI_API_KEY
