@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: investor-analyze-api
+    env: python
+    plan: free
+
+    buildCommand: pip install -r requirements.txt
+
+    startCommand: gunicorn investor_analyze_zh:app --bind 0.0.0.0:$PORT
+
+    envVars:
+      - key: OPENAI_API_KEY
+        value: ${OPENAI_API_KEY}
+      - key: SMTP_PASSWORD
+        value: ${SMTP_PASSWORD}
