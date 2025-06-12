@@ -34,6 +34,7 @@ def compute_age(dob_str):
     try:
         birth_date = parser.parse(dob_str)
         today = datetime.today()
+        # This logic correctly calculates age
         age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
         return age
     except (ValueError, TypeError):
@@ -74,13 +75,13 @@ def send_email(html_body, subject):
     except Exception as e:
         logging.error(f"郵件傳送失敗：{e}")
 
-# --- Chart and Summary Generation ---
+# --- Chart and Summary Generation (Corrected for TW Audience) ---
 def generate_chart_metrics():
-    # Labels in Traditional Chinese
+    # Labels corrected to professional Traditional Chinese (TW) vocabulary
     return [
-        {"title": "市場定位", "labels": ["品牌認知", "客戶契合", "聲譽穩固"], "values": [random.randint(70, 90), random.randint(65, 85), random.randint(70, 90)]},
-        {"title": "投資者吸引力", "labels": ["敘事信心", "規模化模型", "信任憑證"], "values": [random.randint(70, 85), random.randint(60, 80), random.randint(75, 90)]},
-        {"title": "策略執行力", "labels": ["合作準備", "高階通路", "領導形象"], "values": [random.randint(65, 85), random.randint(65, 85), random.randint(75, 90)]}
+        {"title": "市場定位", "labels": ["品牌認知度", "客戶契合度", "聲譽穩固度"], "values": [random.randint(70, 90), random.randint(65, 85), random.randint(70, 90)]},
+        {"title": "投資吸引力", "labels": ["敘事信心度", "擴充性模型", "信任證明度"], "values": [random.randint(70, 85), random.randint(60, 80), random.randint(75, 90)]},
+        {"title": "策略執行力", "labels": ["合作準備度", "高階通路運用", "領導影響力"], "values": [random.randint(65, 85), random.randint(65, 85), random.randint(75, 90)]}
     ]
 
 def generate_chart_html(metrics):
@@ -100,7 +101,7 @@ def generate_chart_html(metrics):
     return html
 
 def build_dynamic_summary(age, experience, industry, country, metrics, challenge, context, target_profile):
-    # Maps in Traditional Chinese
+    # Maps localized for Traditional Chinese (TW)
     industry_map = {
         "保險": "競爭激烈的保險領域", "不動產": "充滿活力的不動產市場",
         "金融": "高風險的金融世界", "科技": "快速發展的科技產業",
@@ -128,29 +129,25 @@ def build_dynamic_summary(age, experience, industry, country, metrics, challenge
     conf, scale, trust = metrics[1]["values"]
     partn, premium, leader = metrics[2]["values"]
 
-    # --- TEXT REWRITTEN TO THIRD-PERSON PERSPECTIVE ---
     summary_html = (
-        "<br><div style='font-size:24px;font-weight:bold;'>🧠 策略摘要</div><br>"
-        f"<p style='line-height:1.7; text-align:justify; margin-bottom: 1em;'>{chosen_opening} 這份報告反映了一個關鍵時刻，其焦點轉向{challenge_narrative}。數據顯示，擁有此背景的專業人士具備{brand}%的強大品牌認知，意味著已建立一定的市場影響力。 "
-        f"然而，分析也指出了一个機會：需要提升價值主張的清晰度（客戶契合度為{fit}%），並確保其專業聲譽具有持久的影響力（聲譽穩固性為{stick}%）。目標是從單純的被認知，過渡到能產生共鳴的影響力。</p>"
-        f"<p style='line-height:1.7; text-align:justify; margin-bottom: 1em;'>在{country}的投資環境中，一個引人入勝的故事至關重要。{conf}%的敘事信心表明，該人士的核心專業敘事元素是強而有力的。關鍵似乎在於解決規模化模型的問題，目前為{scale}%。 "
-        f"這表明，優化「如何做」——即闡明一個清晰、可複製的成長模型——可能會顯著提升投資者吸引力。令人鼓舞的是，{trust}%的信任憑證得分顯示，過往的記錄是堅實的資產，為建構未來引人注目的敘事提供了信譽基礎。</p>"
-        f"<p style='line-height:1.7; text-align:justify; margin-bottom: 1em;'>策略的最終評判標準是執行力。{partn}%的合作準備得分，標誌著強大的協作能力——這是吸引特定類型高水準合作夥伴或投資者時的關鍵要素。 "
-        f"此外，{premium}%的高階通路使用率揭示了提升品牌定位的未開發潛力。再加上{leader}%的穩固領導形象，訊息非常明確：具備這樣背景的專業人士已被視為可信。下一步是策略性地佔據能反映其全部價值的高影響力空間。</p>"
+        "<br><div style='font-size:24px;font-weight:bold;'>🧠 策略總結</div><br>"
+        f"<p style='line-height:1.7; text-align:justify; margin-bottom: 1em;'>{chosen_opening} 這份報告反映了一個關鍵時刻，其焦點轉向{challenge_narrative}。資料顯示，擁有此背景的專業人士具備{brand}%的強大品牌認知，意味著已建立一定的市場影響力。 "
+        f"然而，分析也指出了一個機會：需要提升價值主張的清晰度（客戶契合度為{fit}%），並確保其專業聲譽具有持久的影響力（聲譽穩固度為{stick}%）。目標是從單純的被認知，過渡到能產生共鳴的影響力。</p>"
+        f"<p style='line-height:1.7; text-align:justify; margin-bottom: 1em;'>在{country}的投資環境中，一個引人入勝的故事至關重要。{conf}%的敘事信心度表明，該人士的核心專業敘事元素是強而有力的。關鍵似乎在於解決擴充性模型的問題，目前為{scale}%。 "
+        f"這表明，優化「如何做」——即闡明一個清晰、可複製的成長模型——可能會顯著提升投資者吸引力。令人鼓舞的是，{trust}%的信任證明度得分顯示，過往的記錄是堅實的資產，為建構未來引人注目的敘事提供了信譽基礎。</p>"
+        f"<p style='line-height:1.7; text-align:justify; margin-bottom: 1em;'>策略的最終評判標準是執行力。{partn}%的合作準備度，標誌著強大的協作能力——這是吸引特定類型高水準合作夥伴或投資者時的關鍵要素。 "
+        f"此外，{premium}%的高階通路運用揭示了提升品牌定位的未開發潛力。再加上{leader}%的穩固領導影響力，訊息非常明確：具備這樣背景的專業人士已被視為可信。下一步是策略性地佔據能反映其全部價值的高影響力空間。</p>"
         f"<p style='line-height:1.7; text-align:justify; margin-bottom: 1em;'>將這樣的資料與新加坡、馬來西亞和台灣的同行進行基準比較，不僅是衡量現狀，更是為了揭示策略優勢。 "
-        f"數據表明，驅動這一策略焦點的專業直覺通常是正確的。對於處於此階段的專業人士來說，前進的道路通常在於資訊、模型和市場的精準對齊。本分析可作為一個框架，為這類專業人士將當前氣勢轉化為決定性突破提供所需的清晰度。</p>"
+        f"資料表明，驅動這一策略焦點的專業直覺通常是正確的。對於處於此階段的專業人士來說，前進的道路通常在於資訊、模型和市場的精準對齊。本分析可作為一個框架，為這類專業人士將當前氣勢轉化為決定性突破提供所需的清晰度。</p>"
     )
     return summary_html
 
-
-# --- Main Flask Route ---
 @app.route("/investor_analyze", methods=["POST"])
 def investor_analyze():
     try:
         data = request.get_json(force=True)
         logging.info(f"收到 POST 請求: {data.get('email', '沒有提供電子郵件')}")
 
-        # --- Data Extraction ---
         full_name = data.get("fullName", "N/A")
         chinese_name = data.get("chineseName", "N/A")
         dob_str = data.get("dob", "N/A")
@@ -166,16 +163,13 @@ def investor_analyze():
         advisor = data.get("advisor", "N/A")
         email = data.get("email", "N/A")
         
-        # --- Data Processing ---
         age = compute_age(dob_str)
         chart_metrics = generate_chart_metrics()
         
-        # --- HTML Generation ---
-        title = "<h4 style='text-align:center;font-size:24px;'>🎯 AI 策略洞察</h4>"
+        title = "<h4 style='text-align:center;font-size:24px;'>🎯 投資人洞察報告</h4>"
         chart_html = generate_chart_html(chart_metrics)
         summary_html = build_dynamic_summary(age, experience, industry, country, chart_metrics, challenge, context, target_profile)
         
-        # --- AI Tips Generation (Prompt updated for third-person perspective and TW Chinese) ---
         prompt = (f"為一位在{country}{industry}領域擁有{experience}年經驗的專業人士，生成10條吸引投資者的實用建議，並附上表情符號。"
                   f"語氣應犀利、具有策略性且專業。請用繁體中文回答。"
                   f"重點：請使用客觀的第三人稱視角撰寫，例如使用「該類專業人士」或「他們」，絕對不要使用「您」或「您的」。")
@@ -187,7 +181,6 @@ def investor_analyze():
         else:
             tips_block = "<p style='color:red;'>⚠️ 暫時無法生成創新建議。</p>"
 
-        # --- Footer Construction (This part remains in 2nd person as it's a direct message from the service) ---
         footer = (
             "<div style='background-color:#f9f9f9;color:#333;padding:20px;border-left:6px solid #8C52FF; border-radius:8px;margin-top:30px;'>"
             "<strong>📊 AI 洞察來源:</strong><ul style='margin-top:10px;margin-bottom:10px;padding-left:20px;line-height:1.7;'>"
@@ -196,10 +189,9 @@ def investor_analyze():
             "<p style='margin-top:10px;line-height:1.7;'>所有資料均符合個人資料保護法(PDPA)且不會被儲存。我們的 AI 系統在偵測具統計意義的模式時，不會引用任何個人記錄。</p>"
             "<p style='margin-top:10px;line-height:1.7;'><strong>附註:</strong> 這份初步洞察僅僅是個開始。一份更個人化、資料更具體的報告——反映您提供的完整資訊——將在 <strong>24 至 48 小時</strong> 內準備好並傳送到收件人的信箱。"
             "這將使我們的 AI 系統能夠將您的資料與細微的區域和產業特定基準進行交叉引用，確保提供針對確切挑戰的更精準建議。"
-            "如果希望盡快進行對話，我們很樂意在您方便的時間安排一次 <strong>15 分鐘的通話</strong>。 🎯</p></div>"
+            "如果希望盡快進行對話，我們很樂意在您方便的時間安排一次 <strong>15 分鐘的私人通話服務</strong>。 🎯</p></div>"
         )
         
-        # --- Email Body Construction ---
         details_html = (
             f"<br><div style='font-size:14px;color:#333;line-height:1.6;'>"
             f"<h3 style='font-size:16px;'>📝 提交摘要</h3>"
@@ -220,7 +212,6 @@ def investor_analyze():
         )
 
         email_html = f"<h1>新的投資者洞察提交</h1>" + details_html + title + chart_html + summary_html + tips_block + footer
-        
         send_email(email_html, f"新的投資者洞察: {full_name}")
 
         display_html = title + chart_html + summary_html + tips_block + footer
@@ -231,7 +222,6 @@ def investor_analyze():
         traceback.print_exc()
         return jsonify({"error": "發生內部伺服器錯誤。"}), 500
 
-# --- Run the App ---
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(debug=True, host='0.0.0.0', port=port)
